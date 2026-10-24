@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阮兜的早頓 - 臺灣台語互動學習網</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        terracotta: '#D96B43',
+                        warmbg: '#FFFDF9',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FFFDF9;
+            color: #2D3748;
+        }
+        .text-glow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-hover {
+            transition: all 0.25s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(217, 107, 67, 0.15);
+        }
+        .vocab-badge {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .vocab-badge:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-200 selection:text-amber-900">
+
+    <!-- 導覽列 Top Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-amber-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xl shadow-inner">
+                    早
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-gray-800 leading-tight">阮兜的早頓</h1>
+                    <p class="text-xs text-amber-700">第 1 單元 ‧ 臺灣台語朗讀課文</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-gray-600">
+                <a href="#text-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">📖 課文全文</a>
+                <a href="#author-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">👨‍🏫 作者紹介</a>
+                <a href="#game-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">🎮 語詞拋輾斗</a>
+                <a href="#language-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">💡 語文延伸</a>
+                <a href="#diy-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">🍳 咱來攢早頓</a>
+                <a href="#quiz-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">📝 課堂評量</a>
+                <a href="#map-section" class="px-3 py-2 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">🗺️ 生活千里鏡</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-amber-100 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-amber-100 px-4 pt-2 pb-4 space-y-1 text-sm font-medium">
+            <a href="#text-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">📖 課文全文</a>
+            <a href="#author-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">👨‍🏫 作者紹介</a>
+            <a href="#game-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">🎮 語詞拋輾斗</a>
+            <a href="#language-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">💡 語文延伸</a>
+            <a href="#diy-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">🍳 咱來攢早頓</a>
+            <a href="#quiz-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">📝 課堂評量</a>
+            <a href="#map-section" class="block px-3 py-2 rounded-md hover:bg-amber-50 text-gray-700">🗺️ 生活千里鏡</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-amber-100 via-amber-50 to-warmbg py-12 lg:py-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-200 text-amber-800 tracking-wide">
+                        <i class="fa-solid fa-utensils mr-1.5"></i> 全國語文競賽 臺灣台語國小組朗讀文章
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-tight">
+                        阮兜的早頓 <span class="text-amber-600 font-normal text-2xl lg:text-3xl block mt-2">Gún tau ê tsá-tng</span>
+                    </h1>
+                    <p class="text-lg text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        恁兜的早頓攏食啥物？有人愛食西洋的，有人愛食臺味的；有人欲食飽，有人欲食巧。作者黃文俊透過細漢踮厝食早頓的記持，帶咱探索飲食習慣與家庭溝通的包容之美。
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#text-section" class="px-6 py-3 rounded-xl bg-amber-600 text-white font-bold shadow-lg hover:bg-amber-700 transition transform active:scale-95 flex items-center">
+                            <i class="fa-solid fa-book-open mr-2"></i> 開始閱讀課文
+                        </a>
+                        <a href="#map-section" class="px-6 py-3 rounded-xl bg-white text-amber-800 border border-amber-300 font-bold hover:bg-amber-50 transition flex items-center">
+                            <i class="fa-solid fa-map-location-dot mr-2"></i> 探索全臺早餐地圖
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image / Visual Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-amber-100 transform rotate-1 hover:rotate-0 transition duration-300">
+                        <div class="relative rounded-2xl overflow-hidden bg-amber-50 p-6 text-center border border-amber-200">
+                            <div class="text-6xl mb-4">🥣 🥟 🥖</div>
+                            <h3 class="text-xl font-bold text-amber-900 mb-2">「食物無同款，心意平平重」</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                阿母講：「無冤無家，不成夫妻。若為著無仝款的食食咧冤家量債，拍歹翁某的感情，彼就毋值矣。」
+                            </p>
+                            <div class="mt-4 pt-4 border-t border-amber-200/60 flex justify-around text-xs text-amber-800 font-semibold">
+                                <span><i class="fa-solid fa-heart mr-1"></i> 互相尊重</span>
+                                <span><i class="fa-solid fa-face-smile mr-1"></i> 各人揀各人愛</span>
+                                <span><i class="fa-solid fa-house-chimney mr-1"></i> 和樂融融</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: 課文全文與互動註解 -->
+    <section id="text-section" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Section 01</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-1">📖 課文朗讀與詞彙對照</h2>
+                <p class="text-gray-600 mt-2">點擊高亮標記語詞，可立即查閱「臺羅拼音」、「華語解釋」與「音檔範例」</p>
+                
+                <!-- Display Toggles -->
+                <div class="flex justify-center items-center space-x-4 mt-6">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="toggle-tailo" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                        <span class="ml-2 text-sm font-medium text-gray-700">顯示臺羅註解提示</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Text Content Container -->
+            <div class="space-y-6 text-lg text-gray-800 leading-relaxed bg-amber-50/40 p-6 sm:p-10 rounded-2xl border border-amber-100 shadow-sm">
+                
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">1.</span>
+                    自我有<button onclick="showVocab('記持')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">記持 kì-tî</button>開始，阮兜的早頓就是阿爸一國，阿母合阮兄弟仔一國。我讀幼稚園（iu-tsí-ián）的時，逐工透早阿母就共早頓攢好勢，有時陣是<button onclick="showVocab('俗')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">俗（吐司）</button>配牛奶，若無就是饅頭、包仔配豆奶。
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">2.</span>
+                    逐工早起，當阮咧食早頓的時，阿爸攏佇邊仔咧看報紙。我就問阿爸哪會無欲做伙食？阿爸攏應講伊食飽矣！想袂到阿爸遐早就食飽矣，伊是食啥物好料的攏毋予阮知咧？
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">3.</span>
+                    捌聽阿媽講起，阿爸細漢的時，厝裡囡仔<button onclick="showVocab('大陣')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">大陣 tuā-tīn</button>，彼陣閣踮佇庄跤，阿公、阿媽足早著愛去<button onclick="showVocab('作穡')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">作穡 tso-sit</button>，早起攏煮一大<button onclick="showVocab('坩')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">坩 kam</button>，等阿爸個兄弟仔精神了後，配一寡仔菜脯、<button onclick="showVocab('蔭瓜仔')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">蔭瓜仔 ìm-kue-á</button>，清彩扒扒咧就去讀冊矣。
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">4.</span>
+                    阿媽閣講，阿爸細漢的時足<button onclick="showVocab('歹喙斗')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">歹喙斗 pháinn-tshuì-táu</button>，佇庄跤食糜配醬菜的日子，逐工攏嘛<button onclick="showVocab('面憂面結')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">面憂面結 mīn-iu-mīn-kat</button>，啥物都無愛食，毋才會生做<button onclick="showVocab('黃酸黃酸')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">黃酸黃酸 hn̂g-sng-hn̂g-sng</button>。
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">5.</span>
+                    講嘛奇怪，搬去臺北了後，阿公阿媽無閒咧做生理，早頓就攏叫阿爸家己提<button onclick="showVocab('銀角仔')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">銀角仔 gîn-kak-á</button>去菜市仔買，伊煞親像囡仔咧<button onclick="showVocab('轉骨')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">轉骨 tsn̂g-kut</button>仝款，<button onclick="showVocab('開脾')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">開脾 khai-pî</button>矣！
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">6.</span>
+                    今仔日食蚵仔麵線，明仔載肉羹麵，若無就是米粉炒配豬血湯。就按呢，阮阿爸的早頓就沓沓仔變成菜市仔口味的綜合版，真<button onclick="showVocab('oh')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium"> 𠢕 oh</button>改矣！
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">7.</span>
+                    阿母講伊合阿爸拄交往的時陣，毋知阿爸愛食彼款重口味的早頓，有當時仔阿爸會招伊去菜市仔食<button onclick="showVocab('數念')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">數念 siau-liām</button>誠久的好滋味，阿母嘛會當接受。
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">8.</span>
+                    想袂到，結婚了後兩个人煞不時為著欲食佗一款早頓咧冤家。原底阿爸會勉強共阿母攢的早頓食予了，毋過阿母敢若會當感受著<button onclick="showVocab('翁婿')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">翁婿 ang-sài</button>淡薄仔<button onclick="showVocab('稀微')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">稀微 hi-bî</button>的心情——無食著家己合意的早頓，規工攏袂輕鬆呢！
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">9.</span>
+                    阿母共阮講：「無冤無家，不成夫妻。若為著無仝款的食食咧<button onclick="showVocab('冤家量債')" class="vocab-btn bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded border-b-2 border-amber-400 font-medium">冤家量債 uan-ke-liōng-tsè</button>，拍歹翁某的感情，彼就毋值矣。」
+                </div>
+
+                <div class="paragraph hover:bg-white/60 p-4 rounded-xl transition">
+                    <span class="font-bold text-amber-700 mr-2">10.</span>
+                    所以這馬阮兜的早頓，就保持這種各人揀各人愛食的，逐家攏誠歡喜。毋過，阿爸有當時仔欲去買伊上愛食的蚵仔麵線，攏會偷偷仔問我和小弟有想欲食無。我定定咧想：「有時陣換食換食，嘛袂痟呢！」
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: 作者紹介 -->
+    <section id="author-section" class="py-16 bg-amber-50/50 border-y border-amber-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-md p-8 sm:p-10 border border-amber-100">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-4 text-center">
+                        <div class="w-36 h-36 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 p-1 shadow-lg">
+                            <div class="w-full h-full bg-amber-100 rounded-full flex items-center justify-center text-amber-800 font-black text-4xl">
+                                黃文俊
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-gray-900 mt-4">黃文俊</h3>
+                        <p class="text-sm font-medium text-amber-700">Ng Bûn-tsùn</p>
+                        <span class="inline-block mt-2 px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-semibold">
+                            嘉義人 ‧ 國小教師
+                        </span>
+                    </div>
+
+                    <div class="md:col-span-8 space-y-4 text-gray-700">
+                        <h4 class="text-xl font-bold text-gray-900 border-b border-amber-200 pb-2">作者簡介與學經歷</h4>
+                        <p class="leading-relaxed">
+                            畢業於嘉義師範專科學校、臺中師範學院國民教育研究所。現任臺中市何厝國小教師，長期積極推廣臺灣本土語文教育，並透過文學創作記錄生活點滴與社會觀察。
+                        </p>
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200/80">
+                            <h5 class="font-bold text-amber-900 mb-2 text-sm"><i class="fa-solid fa-trophy text-amber-600 mr-2"></i>重要著作與得獎紀錄：</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1 text-gray-700">
+                                <li>作品常發表於《台文戰線》、《臺江臺語文學》、《海翁台語文學》等刊物</li>
+                                <li>短篇作品〈光明燈〉曾獲教育部臺客語文學獎</li>
+                                <li>出版作品包含台語小說集《楊桃將軍》、作品集《萬能仔店》</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 語詞拋輾斗 (互動配對遊戲) -->
+    <section id="game-section" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Section 03</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-1">🎮 語詞拋輾斗 (詞彙互動配對)</h2>
+                <p class="text-gray-600 mt-2">請根據「華語解釋」，選擇正確的「臺語語詞」進行連線/點擊配對！</p>
+            </div>
+
+            <div class="bg-amber-50/70 p-6 sm:p-8 rounded-3xl border border-amber-200 shadow-sm">
+                <!-- Game Scoreboard -->
+                <div class="flex justify-between items-center mb-6 bg-white px-6 py-3 rounded-2xl shadow-sm border border-amber-100">
+                    <div class="text-amber-800 font-bold">
+                        <i class="fa-solid fa-star text-amber-500 mr-1"></i> 得分：<span id="game-score" class="text-xl text-amber-600">0</span> / 70
+                    </div>
+                    <button onclick="resetGame()" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-3 py-1.5 rounded-lg font-semibold transition">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> 重新開始
+                    </button>
+                </div>
+
+                <!-- Match List Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="match-container">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: 語文延伸與「喙」字經典 -->
+    <section id="language-section" class="py-16 bg-amber-50/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Section 04</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-1">💡 語文延伸與經典句型</h2>
+                <p class="text-gray-600 mt-2">學習食糜常見配菜、早餐特色語詞、以及「喙」字台語片語</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" id="lang-tabs">
+                <button onclick="switchLangTab('porridge')" id="tab-porridge" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-amber-600 text-white shadow-sm transition">
+                    🥣 食糜配啥？ (稀飯配菜)
+                </button>
+                <button onclick="switchLangTab('western')" id="tab-western" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-gray-700 hover:bg-amber-100 transition">
+                    🥪 食飽食巧 (常見早餐)
+                </button>
+                <button onclick="switchLangTab('mouth')" id="tab-mouth" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-gray-700 hover:bg-amber-100 transition">
+                    👄 各款「喙」解密
+                </button>
+                <button onclick="switchLangTab('pattern')" id="tab-pattern" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-gray-700 hover:bg-amber-100 transition">
+                    ✍️ 句型與俗語
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="tab-content-container" class="bg-white p-6 sm:p-10 rounded-3xl border border-amber-100 shadow-sm">
+                <!-- Content will be swapped via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: 咱來攢早頓 (互動組餐活動) -->
+    <section id="diy-section" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Section 05</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-1">🍳 咱來攢早頓 (夢幻早餐搭配體驗)</h2>
+                <p class="text-gray-600 mt-2">設計一套你上合意、上理想的早頓，並生成屬於你的早頓卡片！</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Options Panel -->
+                <div class="lg:col-span-7 bg-amber-50/60 p-6 rounded-3xl border border-amber-200 space-y-6">
+                    <div>
+                        <label class="block font-bold text-gray-800 mb-2">1. 飲物 (飲料選擇)：</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button onclick="selectDIY('drink', '豆奶 (tāu-nái)', '豆漿')" class="diy-btn-drink bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🥛 豆奶 (豆漿)</button>
+                            <button onclick="selectDIY('drink', '牛奶 (gû-nái)', '鮮奶')" class="diy-btn-drink bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🥛 牛奶 (鮮奶)</button>
+                            <button onclick="selectDIY('drink', '茶米 (tê-bí)', '熱茶')" class="diy-btn-drink bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🍵 茶米 (熱茶)</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-gray-800 mb-2">2. 主食 (主要食食)：</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button onclick="selectDIY('main', '卵饼 (nn̂g-piánn)', '蛋餅')" class="diy-btn-main bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🍳 卵餅 (蛋餅)</button>
+                            <button onclick="selectDIY('main', '飯丸 (pn̄g-uân)', '飯糰')" class="diy-btn-main bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🍙 飯丸 (飯糰)</button>
+                            <button onclick="selectDIY('main', '俗 (siok-phang-kauh)', '三明治')" class="diy-btn-main bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🥪 俗 (三明治)</button>
+                            <button onclick="selectDIY('main', '蚵仔麵線 (ô-á-mī-suànn)', '麵線')" class="diy-btn-main bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🍜 蚵仔麵線</button>
+                            <button onclick="selectDIY('main', '菜頭粿 (tshài-thâu-kué)', '蘿蔔糕')" class="diy-btn-main bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🥞 菜頭粿</button>
+                            <button onclick="selectDIY('main', '饅頭 (mân-thâu)', '饅頭')" class="diy-btn-main bg-white p-3 rounded-xl border text-sm font-medium hover:border-amber-500 transition text-center">🍞 饅頭夾卵</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-gray-800 mb-2">3. 理由 (為什麼喜歡這樣搭？)：</label>
+                        <input type="text" id="diy-reason" placeholder="例如：好食閣營養，而且款起來真緊！" class="w-full px-4 py-3 rounded-xl border border-amber-300 focus:ring-2 focus:ring-amber-500 focus:outline-none bg-white text-sm">
+                    </div>
+                </div>
+
+                <!-- Live Preview Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-amber-500 to-amber-600 text-white p-6 rounded-3xl shadow-xl space-y-4">
+                    <div class="flex justify-between items-center border-b border-white/20 pb-3">
+                        <span class="font-bold text-lg"><i class="fa-solid fa-utensils mr-2"></i> 我上合意的早頓</span>
+                        <span class="text-xs bg-white/20 px-2.5 py-1 rounded-full">DIY Menu</span>
+                    </div>
+
+                    <div class="space-y-3 py-2">
+                        <div class="bg-white/10 p-3 rounded-xl">
+                            <span class="text-xs text-amber-100 block">飲物：</span>
+                            <span id="preview-drink" class="font-bold text-base">請點選左側飲物</span>
+                        </div>
+                        <div class="bg-white/10 p-3 rounded-xl">
+                            <span class="text-xs text-amber-100 block">主食：</span>
+                            <span id="preview-main" class="font-bold text-base">請點選左側主食</span>
+                        </div>
+                        <div class="bg-white/10 p-3 rounded-xl">
+                            <span class="text-xs text-amber-100 block">推薦理由：</span>
+                            <span id="preview-reason" class="text-sm italic">好食閣營養，吃了精神飽滇！</span>
+                        </div>
+                    </div>
+
+                    <button onclick="alert('恭喜你完成了專屬早頓設計！這是一份既美味又充滿智慧的早餐組合！')" class="w-full py-3 bg-white text-amber-800 font-black rounded-xl hover:bg-amber-50 shadow transition transform active:scale-95">
+                        <i class="fa-solid fa-circle-check mr-2"></i> 完成並送出評選
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: 課堂評量與聽力測驗 -->
+    <section id="quiz-section" class="py-16 bg-amber-50/40">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Section 06</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-1">📝 課堂評量與理解測驗</h2>
+                <p class="text-gray-600 mt-2">檢核對課文台詞、讀音與詞彙的理解程度</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-10 rounded-3xl border border-amber-100 shadow-md space-y-8" id="quiz-container">
+                
+                <!-- Q1 -->
+                <div class="quiz-item border-b border-amber-100 pb-6">
+                    <p class="font-bold text-gray-900 text-base mb-3">
+                        <span class="text-amber-600">Q1.</span> 請問下面佗一組「」的字讀音相仝？
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <button onclick="checkQuiz(1, 'A', false)" class="q1-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">A. 「轉」骨 (tsn̂g) / 「轉」變 (tsuán)</button>
+                        <button onclick="checkQuiz(1, 'B', false)" class="q1-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">B. 食「食」 (tsih) / 揀「食」 (tsiah)</button>
+                        <button onclick="checkQuiz(1, 'C', false)" class="q1-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">C. 「數」念 (siau) / 「數」學 (sòo)</button>
+                        <button onclick="checkQuiz(1, 'D', true)" class="q1-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">D. 「開」脾 (khui) / 「開」門 (khui)</button>
+                    </div>
+                    <div id="q1-explanation" class="hidden mt-3 p-3 bg-amber-50 text-amber-900 rounded-xl text-xs leading-relaxed"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="quiz-item border-b border-amber-100 pb-6">
+                    <p class="font-bold text-gray-900 text-base mb-3">
+                        <span class="text-amber-600">Q2.</span> 請問下面佗一個「陣」的意思，其他三個無仝？
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <button onclick="checkQuiz(2, 'A', false)" class="q2-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">A. 有一大「陣」學生去辦公室揣老師</button>
+                        <button onclick="checkQuiz(2, 'B', false)" class="q2-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">B. 會有規大「陣」學生，相招去唱歌</button>
+                        <button onclick="checkQuiz(2, 'C', true)" class="q2-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">C. 挂才雨落甲足大「陣」，這馬塗跤澹漉漉</button>
+                        <button onclick="checkQuiz(2, 'D', false)" class="q2-opt text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">D. 彼間麵擔仔有一大「陣」人排隊</button>
+                    </div>
+                    <div id="q2-explanation" class="hidden mt-3 p-3 bg-amber-50 text-amber-900 rounded-xl text-xs leading-relaxed"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="quiz-item">
+                    <p class="font-bold text-gray-900 text-base mb-3">
+                        <span class="text-amber-600">Q3.</span> 根據課文內容，下面佗一個選項上正確？
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <button onclick="checkQuiz(3, 'A', false)" class="q3-opt w-full text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">A. 菜市仔的早頓比厝裡煮的閣較好食。</button>
+                        <button onclick="checkQuiz(3, 'B', true)" class="q3-opt w-full text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">B. 家庭成員愛互相尊重無仝款的飲食口味。</button>
+                        <button onclick="checkQuiz(3, 'C', false)" class="q3-opt w-full text-left p-3 rounded-xl border border-gray-200 hover:bg-amber-50 transition">C. 搬去臺北了後，阿爸只食糜配醬菜。</button>
+                    </div>
+                    <div id="q3-explanation" class="hidden mt-3 p-3 bg-amber-50 text-amber-900 rounded-xl text-xs leading-relaxed"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: 生活千里鏡 (臺灣早餐文化地圖) -->
+    <section id="map-section" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Section 07</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-1">🗺️ 生活千里鏡：全臺特色早頓地圖</h2>
+                <p class="text-gray-600 mt-2">對臺灣頭踅到臺灣尾，熟似各地因為歷史與環境演化出的美味早頓！</p>
+            </div>
+
+            <!-- Regional Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="breakfast-map-grid">
+                <!-- Dynamic cards populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Container for Vocab details -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-amber-100 transform transition-all">
+            <div class="flex justify-between items-start mb-4 border-b border-amber-100 pb-3">
+                <div>
+                    <h3 id="modal-title" class="text-2xl font-black text-gray-900">詞彙名稱</h3>
+                    <p id="modal-tailo" class="text-sm font-semibold text-amber-700">Tailo</p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div id="modal-body" class="space-y-3 text-gray-700 text-sm leading-relaxed">
+                <!-- Modal info -->
+            </div>
+            <div class="mt-6 pt-3 border-t border-amber-100 text-right">
+                <button onclick="closeModal()" class="px-5 py-2 bg-amber-600 text-white rounded-xl font-bold hover:bg-amber-700 text-xs">
+                    了解並關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-400 space-y-2">
+            <p>《阮兜的早頓》數位互動學習單元 ‧ 依據臺灣本土語文教材編製</p>
+            <p>© 2026 臺灣台語語文教學與互動展廳系統</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Vocabulary Dictionary
+        const vocabDict = {
+            '記持': { tailo: 'kì-tî', mand: '記憶、記性。', ex: '自我有記持開始，就真愛食油炸粿。' },
+            '俗': { tailo: 'siok-phang-kauh', mand: '吐司、三明治。', ex: '透早阿母買俗配牛奶予阮食。' },
+            '大陣': { tailo: 'tuā-tīn', mand: '一大群人。', ex: '厝裡囡仔大陣，早起愛煮一大坩糜。' },
+            '作穡': { tailo: 'tso-sit', mand: '務農、工作。', ex: '阿公阿媽足早著愛去田裡作穡。' },
+            '坩': { tailo: 'kam', mand: '鍋子。', ex: '早起煮一大坩白米糜。' },
+            '蔭瓜仔': { tailo: 'ìm-kue-á', mand: '醃製的軟嫩醬瓜。', ex: '食糜配菜脯合蔭瓜仔上對味。' },
+            '歹喙斗': { tailo: 'pháinn-tshuì-táu', mand: '挑嘴。形容人對食物很挑剔。', ex: '阿爸細漢足歹喙斗，啥物都無愛食。' },
+            '面憂面結': { tailo: 'mīn-iu-mīn-kat', mand: '愁眉苦臉。', ex: '看著無愛食的物件就面憂面結。' },
+            '黃酸黃酸': { tailo: 'hn̂g-sng-hn̂g-sng', mand: '面黃肌瘦、營養不良的樣子。', ex: '細漢挑食，生做黃酸黃酸。' },
+            '銀角仔': { tailo: 'gîn-kak-á / gûn-kak-á', mand: '硬幣、銅板。', ex: '提銀角仔去菜市仔買早頓。' },
+            '轉骨': { tailo: 'tsn̂g-kut', mand: '發育成長時期。', ex: '煞親像囡仔咧轉骨仝款，胃口變大。' },
+            '開脾': { tailo: 'khai-pî', mand: '開胃。增進食慾。', ex: '搬去臺北了後，阿爸就開脾矣！' },
+            'oh': { tailo: 'oh', mand: '困難、不容易。', ex: '真𠢕改（很難改變習慣）。' },
+            '數念': { tailo: 'siau-liām', mand: '想念、懷念。', ex: '去菜市仔食數念誠久的好滋味。' },
+            '翁婿': { tailo: 'ang-sài', mand: '丈夫。', ex: '感受著翁婿淡薄仔稀微的心情。' },
+            '稀微': { tailo: 'hi-bî', mand: '寂寞、寂寥、落寞。', ex: '無食著合意的早頓，心情會稀微。' },
+            '冤家量債': { tailo: 'uan-ke-liōng-tsè', mand: '吵架。像冤家一樣爭吵不停。', ex: '為著食食咧冤家量債，拍歹感情。' }
+        };
+
+        function showVocab(term) {
+            const data = vocabDict[term] || { tailo: '', mand: '課文重點語詞', ex: '' };
+            document.getElementById('modal-title').innerText = term;
+            document.getElementById('modal-tailo').innerText = data.tailo;
+            document.getElementById('modal-body').innerHTML = `
+                <p><strong>【華語釋義】：</strong>${data.mand}</p>
+                ${data.ex ? `<p class="text-amber-800 bg-amber-50 p-2.5 rounded-lg border border-amber-200 mt-2"><strong>【例句】：</strong>${data.ex}</p>` : ''}
+            `;
+            document.getElementById('vocab-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('vocab-modal').classList.add('hidden');
+        }
+
+        // Section 3 Match Game logic
+        const matchData = [
+            { term: '數念', tailo: 'siau-liām', ans: '想念、懷念' },
+            { term: '蔭瓜仔', tailo: 'ìm-kue-á', ans: '醃製的軟嫩醬瓜' },
+            { term: '歹喙斗', tailo: 'pháinn-tshuì-táu', ans: '挑嘴、挑食' },
+            { term: '面憂面結', tailo: 'mīn-iu-mīn-kat', ans: '愁眉苦臉' },
+            { term: '開脾', tailo: 'khai-pî', ans: '開胃、增進食慾' },
+            { term: '稀微', tailo: 'hi-bî', ans: '寂寞、寂寥落寞' },
+            { term: '冤家量債', tailo: 'uan-ke-liōng-tsè', ans: '吵架、爭吵不停' }
+        ];
+
+        let gameScore = 0;
+        function renderGame() {
+            const container = document.getElementById('match-container');
+            container.innerHTML = matchData.map((item, index) => `
+                <div class="bg-white p-4 rounded-2xl border border-amber-100 flex items-center justify-between shadow-sm">
+                    <div>
+                        <span class="font-bold text-lg text-amber-900">${item.term}</span>
+                        <span class="text-xs text-amber-700 block">${item.tailo}</span>
+                    </div>
+                    <select id="game-sel-${index}" onchange="checkMatch(${index}, '${item.ans}')" class="text-sm bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 text-gray-700 focus:outline-none">
+                        <option value="">-- 請選擇華語解說 --</option>
+                        <option value="想念、懷念">想念、懷念</option>
+                        <option value="醃製的軟嫩醬瓜">醃製的軟嫩醬瓜</option>
+                        <option value="挑嘴、挑食">挑嘴、挑食</option>
+                        <option value="愁眉苦臉">愁眉苦臉</option>
+                        <option value="開胃、增進食慾">開胃、增進食慾</option>
+                        <option value="寂寞、寂寥落寞">寂寞、寂寥落寞</option>
+                        <option value="吵架、爭吵不停">吵架、爭吵不停</option>
+                    </select>
+                </div>
+            `).join('');
+        }
+
+        function checkMatch(index, correctAns) {
+            const sel = document.getElementById(`game-sel-${index}`);
+            if (sel.value === correctAns) {
+                sel.classList.remove('bg-amber-50', 'border-amber-200');
+                sel.classList.add('bg-green-100', 'border-green-400', 'text-green-800');
+                sel.disabled = true;
+                gameScore += 10;
+                document.getElementById('game-score').innerText = gameScore;
+            } else if (sel.value !== '') {
+                alert('答錯囉，再試試看！');
+                sel.value = '';
+            }
+        }
+
+        function resetGame() {
+            gameScore = 0;
+            document.getElementById('game-score').innerText = gameScore;
+            renderGame();
+        }
+
+        // Section 4 Tabs Content Swapper
+        const langTabContents = {
+            porridge: `
+                <h3 class="text-xl font-bold text-gray-900 mb-4">🥣 食糜配啥？(稀飯常見經典佐菜)</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🌿</div><p class="font-bold text-sm">滸苔醬</p><p class="text-xs text-amber-800">hóo-thî-tsiùnn (海苔醬)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🍳</div><p class="font-bold text-sm">卵包</p><p class="text-xs text-amber-800">nng-pau (荷包蛋)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🥢</div><p class="font-bold text-sm">豆棗</p><p class="text-xs text-amber-800">tāu-tsó (甜豆絲)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🧀</div><p class="font-bold text-sm">豆乳</p><p class="text-xs text-amber-800">tāu-jú / tāu-lú (豆腐乳)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🍄</div><p class="font-bold text-sm">麵筋</p><p class="text-xs text-amber-800">mī-thi</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🎋</div><p class="font-bold text-sm">筍乾</p><p class="text-xs text-amber-800">sún-kuann</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🥓</div><p class="font-bold text-sm">肉酥</p><p class="text-xs text-amber-800">bah-soo (肉鬆)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🥚</div><p class="font-bold text-sm">鹹卵</p><p class="text-xs text-amber-800">kiâm-nng (鹹鴨蛋)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🥜</div><p class="font-bold text-sm">塗豆</p><p class="text-xs text-amber-800">thôo-tāu (花生)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><div class="text-2xl mb-1">🐟</div><p class="font-bold text-sm">魚脯仔</p><p class="text-xs text-amber-800">hî-póo-á (小魚乾)</p></div>
+                </div>
+            `,
+            western: `
+                <h3 class="text-xl font-bold text-gray-900 mb-4">🥪 食飽食巧 (現代常見早餐項目)</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">美國割包</p><p class="text-xs text-amber-800">Bí-kok kuah-pau (漢堡)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">俗面包</p><p class="text-xs text-amber-800">siok-phang-kauh (三明治)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">飯丸</p><p class="text-xs text-amber-800">pn̄g-uân (飯糰)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">卵餅</p><p class="text-xs text-amber-800">nn̂g-piánn (蛋餅)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">蔥仔餅</p><p class="text-xs text-amber-800">tshang-á-piánn (蔥油餅)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">鐵枋麵</p><p class="text-xs text-amber-800">thih-pang-mī (鐵板麵)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">菜頭粿</p><p class="text-xs text-amber-800">tshài-thâu-kué (蘿蔔糕)</p></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-center"><p class="font-bold">油炸粿</p><p class="text-xs text-amber-800">iû-tsiah-kué (油條)</p></div>
+                </div>
+            `,
+            mouth: `
+                <h3 class="text-xl font-bold text-gray-900 mb-4">👄 延伸語詞：「喙」相關片語</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200"><p class="font-bold text-amber-900">01. 好喙 hó-tshuì</p><p class="text-gray-600 mt-1">嘴巴甜、會說好聽話、好言好語。</p></div>
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200"><p class="font-bold text-amber-900">02. 歹喙 pháinn-tshuì</p><p class="text-gray-600 mt-1">口出惡言、常說負面或不得體的話。</p></div>
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200"><p class="font-bold text-amber-900">03. 合喙 kah-tshuì</p><p class="text-gray-600 mt-1">合胃口、適合自己的飲食習慣。</p></div>
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200"><p class="font-bold text-amber-900">04. 噤喙 khiūnn-tshuì</p><p class="text-gray-600 mt-1">忌口。因生病或養生禁吃不相宜的食物。</p></div>
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200"><p class="font-bold text-amber-900">05. 𪚥喙 suà-tshuì</p><p class="text-gray-600 mt-1">順口、搭腔、越吃越想吃。</p></div>
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200"><p class="font-bold text-amber-900">06. 飫喙 uì-tshuì</p><p class="text-gray-600 mt-1">吃膩了、吃怕了。</p></div>
+                </div>
+            `,
+            pattern: `
+                <h3 class="text-xl font-bold text-gray-900 mb-4">✍️ 課文句型與經典俗語</h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200">
+                        <p class="font-bold text-amber-900 text-base">句型：原底……，毋過……。</p>
+                        <p class="text-gray-700 mt-2 text-sm">【課文語句】：原底阿爸會勉強共阿母攢的早頓食予了，毋過阿母敢若會當感受著翁婿淡薄仔稀微的心情。</p>
+                        <p class="text-gray-700 mt-1 text-sm">【生活造句】：原底我無合意跳索仔，毋過掠著鋩角了後就愈跳愈熟手。</p>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200">
+                        <p class="font-bold text-amber-900 text-base">俗語：早頓食飽，中晝食巧，暗頓半枵飽。</p>
+                        <p class="text-xs text-amber-800">Tsá-tng tsiah pá, tiong-tàu tsiah khá, àm-tng puànn-iau-pá.</p>
+                        <p class="text-gray-700 mt-2 text-sm">【華語解說】：說明的養生飲食原則：早餐吃得飽，午餐吃得巧，晚餐不要吃太飽，身體才不會有負擔。</p>
+                    </div>
+                </div>
+            `
+        };
+
+        function switchLangTab(tab) {
+            document.querySelectorAll('#lang-tabs button').forEach(b => {
+                b.classList.remove('bg-amber-600', 'text-white');
+                b.classList.add('bg-white', 'text-gray-700');
+            });
+            const activeBtn = document.getElementById(`tab-${tab}`);
+            activeBtn.classList.remove('bg-white', 'text-gray-700');
+            activeBtn.classList.add('bg-amber-600', 'text-white');
+
+            document.getElementById('tab-content-container').innerHTML = langTabContents[tab];
+        }
+
+        // Section 5 DIY Breakfast logic
+        let selectedDIYData = { drink: '', main: '' };
+        function selectDIY(type, name, mand) {
+            selectedDIYData[type] = name;
+            document.getElementById(`preview-${type}`).innerText = name;
+        }
+
+        // Section 6 Quiz Checker
+        const quizExplanations = {
+            1: "【解析】：(D)「開」脾 (khui) 與「開」門 (khui) 讀音完全相同。A項「轉」骨(tsn̂g)/轉變(tsuán)；B項食「食」(tsih)/揀「食」(tsiah)；C項「數」念(siau)/「數」學(sòo)。",
+            2: "【解析】：(C) 落甲足大「陣」的「陣」讀作 tsūn，用來計算雨量或時間區段；其餘 (A)、(B)、(D) 的「陣」皆讀作 tīn，表示計算人群群體。",
+            3: "【解析】：(B) 正確！媽媽體悟到「無冤無家，不成夫妻」，為了口味爭執拍歹感情不值得，讓全家各揀所愛、互相尊重才是最理想的做法。"
+        };
+
+        function checkQuiz(qNum, choice, isCorrect) {
+            const expBox = document.getElementById(`q${qNum}-explanation`);
+            expBox.innerHTML = quizExplanations[qNum];
+            expBox.classList.remove('hidden');
+
+            const opts = document.querySelectorAll(`.q${qNum}-opt`);
+            opts.forEach(opt => opt.classList.remove('bg-green-100', 'bg-red-100', 'border-green-500', 'border-red-500'));
+
+            if (isCorrect) {
+                event.currentTarget.classList.add('bg-green-100', 'border-green-500', 'text-green-900');
+            } else {
+                event.currentTarget.classList.add('bg-red-100', 'border-red-500', 'text-red-900');
+            }
+        }
+
+        // Section 7 Taiwan Breakfast Map Data
+        const breakfastMapData = [
+            { region: '馬祖', items: '鼎邊糊 (tiánn-pinn-kôo)、鹹光餅 (kiâm-kong-piánn)' },
+            { region: '金門', items: '廣東糜 (Kńg-tang-muâi)、煎鹹粿 (tsìnn kiâm-kué)' },
+            { region: '基隆', items: '蔥仔餅 + 扁食湯 (tshang-á-piánn + pián-sit-thng)' },
+            { region: '新竹', items: '肉圓 + 骨仔肉湯、鴨肉飯 (ah-bah-pn̄g)' },
+            { region: '臺中', items: '炒麵 + 豬血湯、大麵羹 (tuā-mī-kinn)' },
+            { region: '彰化', items: '肉圓 (bah-uân)、炕肉飯 (khòng-bah-pn̄g)' },
+            { region: '雲林', items: '煎盤粿 (tsian-puânn-kué)、麵線糊 (mī-suànn-kôo)' },
+            { region: '嘉義', items: '滷熟肉 (lóo-siók-bah)、火雞肉飯 (hué-ke-bah-pn̄g)' },
+            { region: '臺南', items: '鹹糜 (kiâm-muâi)、虱目魚湯 (sat-bak-hî-thng)' },
+            { region: '屏東', items: '肉粿 (bah-kué)、飯湯 (pn̄g-thng)' }
+        ];
+
+        function renderMapGrid() {
+            const grid = document.getElementById('breakfast-map-grid');
+            grid.innerHTML = breakfastMapData.map((data, idx) => `
+                <div class="bg-amber-50/60 p-6 rounded-3xl border border-amber-200 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 bg-amber-600 text-white rounded-full text-xs font-bold">${data.region}</span>
+                        <span class="text-xs text-amber-800 font-semibold">地區特色</span>
+                    </div>
+                    <h4 class="text-lg font-black text-gray-900">${data.items.split('(')[0]}</h4>
+                    <p class="text-xs text-amber-800 mt-1">${data.items}</p>
+                </div>
+            `).join('');
+        }
+
+        // Init on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGame();
+            switchLangTab('porridge');
+            renderMapGrid();
+
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
